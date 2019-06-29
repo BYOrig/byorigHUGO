@@ -1,0 +1,4 @@
+baseURL = "http://byorig.com"
+languageCode = "en-us"
+title = "Build Your Own Rig"
+theme = "swift"
