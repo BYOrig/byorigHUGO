@@ -1,46 +1,80 @@
-# Hugo template for Netlify CMS with Netlify Identity
+## Swift Theme
+This theme is designed for blogging purposes. That said, it's extendable for other use cases.
 
-This is a small business template built with [Victor Hugo](https://github.com/netlify/victor-hugo) and [Netlify CMS](https://github.com/netlify/netlify-cms), designed and developed by [Darin Dimitroff](http://www.darindimitroff.com/), [spacefarm.digital](https://www.spacefarm.digital).
+![Hugo Swift Theme](https://github.com/onweru/hugo-swift-theme/blob/master/images/screenshot.png)
 
-## Getting started
+## Features
+* Blog
+* Pagination
+* Responsive
+* Grid CSS
+* [Staticman](https://staticman.net)
+* Deeplinks
+* Syntax Highlighting
 
-Use our deploy button to get your own copy of the repository. 
+## Installation
+Add this theme as a Git submodule inside your Hugo site folder:
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/one-click-hugo-cms&stack=cms)
-
-This will setup everything needed for running the CMS:
-
-* A new repository in your GitHub account with the code
-* Full Continuous Deployment to Netlify's global CDN network
-* Control users and access with Netlify Identity
-* Manage content with Netlify CMS
-
-Once the initial build finishes, you can invite yourself as a user. Go to the Identity tab in your new site, click "Invite" and send yourself an invite.
-
-Now you're all set, and you can start editing content!
-
-## Local Development
-
-Clone this repository, and run `yarn` or `npm install` from the new folder to install all required dependencies.
-
-Then start the development server with `yarn start` or `npm start`.
-
-## Layouts
-
-The template is based on small, content-agnostic partials that can be mixed and matched. The pre-built pages showcase just a few of the possible combinations. Refer to the `site/layouts/partials` folder for all available partials.
-
-Use Hugo’s `dict` functionality to feed content into partials and avoid repeating yourself and creating discrepancies.
-
-## CSS
-
-The template uses a custom fork of Tachyons and PostCSS with cssnext and cssnano. To customize the template for your brand, refer to `src/css/imports/_variables.css` where most of the important global variables like colors and spacing are stored.
-
-## SVG
-
-All SVG icons stored in `site/static/img/icons` are automatically optimized with SVGO (gulp-svgmin) and concatenated into a single SVG sprite stored as a a partial called `svg.html`. Make sure you use consistent icons in terms of viewport and art direction for optimal results. Refer to an SVG via the `<use>` tag like so:
-
+```bash
+$ git submodule add https://github.com/onweru/hugo-swift-theme.git themes/hugo-swift-theme
 ```
-<svg width="16px" height="16px" class="db">
-  <use xlink:href="#SVG-ID"></use>
-</svg>
-```
+
+> Theme hugo sass and hugo-extended version.
+
+## Configuration
+You can configure the site using as follows:
+1. **General Information** and **Staticman config**
+
+    Use the file `config.toml`.
+
+2. **menu**, **footer**
+
+    See the **data** files inside the `data/` directory.
+
+> Follow the `exampleSite/`.
+
+This theme is designed to work with data files. Feel free to extend/alter as you would like.
+
+## Staticman Comments
+By default, [Staticman](https://staticman.net) comments are disabled. If you would like to enable them,
+
+1. Invite Staticman to your repo to collaborate.
+
+    - GitHub: View the issue [eduardoboucas/staticman#243](https://github.com/eduardoboucas/staticman/issues/243) for procedures to set up Staticman v3.
+    - GitLab: Add the GitLab user associated with your Staticman API endpoint (e.g. **[@staticmanlab](https://gitlab.com/staticmanlab)**) as a "**developer**" for your project by going to **Settings → Members → Invite member**.
+
+2. Uncomment the `[Params.staticman]` section and input the parameters inside `config.toml` like so
+
+    ```toml
+    [Params.staticman]
+      endpoint = "https://https://dev.staticman.net"
+      gitProvider = "github"
+      username = "your-username"
+      repository = "hugo-swift-theme"
+      branch = "master"
+    ```
+
+    In case of empty `endpoint`, it will fallback to the public development instance.
+
+3. Proceed to setup `staticman.yml`.  Note that this YML file has to be **at the root of your Git repository**.  See the `exampleSite/` and the [Staticman docs](https://staticman.net/docs/) for detailed information of each parameter used in this YML file.
+
+    The parameter `moderation` is for comment moderation, and it defaults to `false`.  If it is switched to `true`, then Staticman will create a pull/merge request instead of directly committing against the `branch`.
+
+    If you are working on GitLab and you have set `moderation: false`, depending on your `branch`, you might need the following steps.
+
+      - protected branch (e.g. `master`):
+          Go to **Settings → Repository → Protected Branches** and permit the GitLab bot to push against that branch.
+      - unprotected branch (GitHub's default): no measures needed
+
+:information_source: This [Binary Mist article](https://binarymist.io/blog/2018/02/24/hugo-with-staticman-commenting-and-subscriptions/) could also be quite helpful :)
+
+:information_source: By default, this theme uses Staticman v3 instead of the public instance at v2 due to a requests' quota issue reported in issue [eduardoboucas/staticman#222](https://github.com/eduardoboucas/staticman/issues/222).
+
+:warning: Since Staticman is an involving project, things might work differently than they do at the moment of this writing.
+
+### Deeplinks
+
+For all content published using markdown, deeplinks will be added to the pages so that you can share with precision :smiley: Just   hover on a heading and the link button will pop. Click it to copy.
+
+## License
+The code is available under the [MIT license](https://github.com/onweru/hugo-swift-theme/blob/master/LICENSE.md).
